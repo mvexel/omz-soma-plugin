@@ -7,7 +7,8 @@ _soma() {
     'play:start a station in the background'
     'stop:stop playback'
     'track:show the current track'
-    'status:show what'\''s playing'
+    'love:save the current track to your loved list'
+    'loved:show your loved tracks'
     'list:list all stations'
     'update:refresh the station list'
   )

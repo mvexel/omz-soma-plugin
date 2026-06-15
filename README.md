@@ -27,15 +27,16 @@ $ soma stop
 | `soma play <station>` | Start a station in the background (`<Tab>` completes station ids) |
 | `soma stop` | Stop playback |
 | `soma track` | Show the current track |
-| `soma status` | Show what's playing (also the bare `soma`) |
+| `soma love` | Save the currently-playing track to your loved list |
+| `soma loved` | Show your loved tracks |
 | `soma list` | List all stations (`id`, title, genre) |
 | `soma update` | Refresh the cached station list |
 
-Playback is detached (`nohup`), so it keeps going after you close the terminal,
-and `soma stop` works from any shell. Running `soma play` again switches stations.
+Playback is detached, so it keeps going after you close the terminal.
+`soma stop` works from any shell. Running `soma play` again switches stations.
 
-The track shown by `soma track` is parsed from the ICY metadata `mpg123` emits,
-so it reflects exactly what *you* are hearing.
+`soma love` appends the currently playing track to your personal, local loved-tracks
+list. `soma loved` shows you the tracks you've loved. 
 
 ## Configuration
 
@@ -46,8 +47,14 @@ Set these before the plugin loads to change the (sane) default behavior.
 | `SOMA_CACHE` | `$XDG_CACHE_HOME/soma` (`~/.cache/soma`) | Where cache + state files live |
 | `SOMA_CHANNELS_URL` | `https://somafm.com/channels.json` | Station list endpoint |
 | `SOMA_REFRESH_DAYS` | `7` | Auto-refresh the station list after N days |
+| `SOMA_TIMEOUT` | `30` | Seconds before `mpg123` gives up on a stalled stream and exits (`0` = wait forever) |
 | `SOMA_MPG123_OPTS` | _(empty)_ | Extra args passed to `mpg123` (e.g. `-o dummy` for no audio, `-a <device>`) |
+| `SOMA_LOVED` | `$XDG_DATA_HOME/soma/loved` (`~/.local/share/soma/loved`) | File holding your loved-tracks list (TSV) |
 
 State files under `$SOMA_CACHE`: `channels.json` (station cache), `soma.pid`
 (running player), `now.log` (mpg123 output, parsed for the current track),
 `current` (active station id).
+
+Loved tracks are stored separately at `$SOMA_LOVED` (default
+`~/.local/share/soma/loved`), one tab-separated `timestamp · id · title · track`
+row per love, so they outlive a cache wipe.
