@@ -1,0 +1,36 @@
+#compdef soma
+# Completion for the `soma` SomaFM player plugin.
+
+_soma() {
+  local -a subcmds
+  subcmds=(
+    'play:start a station in the background'
+    'stop:stop playback'
+    'track:show the current track'
+    'status:show what'\''s playing'
+    'list:list all stations'
+    'update:refresh the station list'
+  )
+
+  local curcontext="$curcontext" state line
+  _arguments -C '1: :->cmd' '*::arg:->args'
+
+  case $state in
+    cmd)
+      _describe -t commands 'soma command' subcmds
+      ;;
+    args)
+      case $line[1] in
+        play)
+          local cache=${SOMA_CACHE:-${XDG_CACHE_HOME:-$HOME/.cache}/soma}/channels.json
+          [[ -r $cache ]] || return 0
+          local -a stations
+          stations=( ${(f)"$(jq -r '.channels[] | "\(.id):\(.title)"' $cache 2>/dev/null)"} )
+          _describe -t stations 'station' stations
+          ;;
+      esac
+      ;;
+  esac
+}
+
+_soma "$@"
