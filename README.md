@@ -1,9 +1,11 @@
 # soma
 
-A SomaFM player plugin for zsh — works with plain zsh, oh-my-zsh, zinit, antidote, or any
-plugin manager. Play [SomaFM](https://somafm.com/) (and stop) streams in the background with
-`mpg123`. Has tab completion for every station and a current track command. Survives
-terminal sessions.
+A SomaFM player plugin for zsh — works with plain zsh, oh-my-zsh, zinit,
+antidote, or any plugin manager.
+Play [SomaFM](https://somafm.com/)
+(and stop) streams in the background with `mpg123`.
+Has tab completion for every station and a current track command.
+Survives terminal sessions.
 
 ```console
 $ soma play groovesalad
@@ -31,8 +33,10 @@ fpath=(/path/to/omz-soma-plugin $fpath)   # before compinit (tab completion)
 source /path/to/omz-soma-plugin/soma.plugin.zsh
 ```
 
-Oh-my-zsh — clone into `$ZSH_CUSTOM/plugins/soma` and add `soma` to `plugins=(...)`.
-Other plugin managers: point them at the repo; there is nothing framework-specific.
+Oh-my-zsh — clone into `$ZSH_CUSTOM/plugins/soma`
+and add `soma` to `plugins=(...)`.
+Other plugin managers: point them at the repo;
+there is nothing framework-specific.
 
 ## Usage
 
@@ -47,10 +51,12 @@ Other plugin managers: point them at the repo; there is nothing framework-specif
 | `soma update` | Refresh the cached station list |
 
 Playback is detached, so it keeps going after you close the terminal.
-`soma stop` works from any shell. Running `soma play` again switches stations.
+`soma stop` works from any shell.
+Running `soma play` again switches stations.
 
-`soma love` appends the currently playing track to your personal, local loved-tracks
-list. `soma loved` shows you the tracks you've loved. 
+`soma love` appends the currently playing track to your personal,
+local loved-tracks list.
+`soma loved` shows you the tracks you've loved.
 
 ## Configuration
 
@@ -66,9 +72,11 @@ Set these before the plugin loads to change the (sane) default behavior.
 | `SOMA_LOVED` | `$XDG_DATA_HOME/soma/loved` (`~/.local/share/soma/loved`) | File holding your loved-tracks list (TSV) |
 
 State files under `$SOMA_CACHE`: `channels.json` (station cache), `soma.pid`
-(running player), `now.log` (mpg123 output, parsed for the current track),
-`current` (active station id).
+(running player),
+`now.log` (mpg123 output, parsed for the current track), `current`
+(active station id).
 
-Loved tracks are stored separately at `$SOMA_LOVED` (default
-`~/.local/share/soma/loved`), one tab-separated `timestamp · id · title · track`
-row per love, so they outlive a cache wipe.
+Loved tracks are stored separately at `$SOMA_LOVED`
+(default `~/.local/share/soma/loved`),
+one tab-separated `timestamp · id · title · track` row per love,
+so they outlive a cache wipe.
