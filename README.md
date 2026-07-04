@@ -1,7 +1,9 @@
 # soma
 
-Play [SomaFM](https://somafm.com/) (and stop) streams in the background with `mpg123`. 
-Has tab completion for every station and a current track command. Survives terminal sessions.
+A SomaFM player plugin for zsh — works with plain zsh, oh-my-zsh, zinit, antidote, or any
+plugin manager. Play [SomaFM](https://somafm.com/) (and stop) streams in the background with
+`mpg123`. Has tab completion for every station and a current track command. Survives
+terminal sessions.
 
 ```console
 $ soma play groovesalad
@@ -19,6 +21,18 @@ $ soma stop
 
 > Playback uses each station's **MP3** stream (mpg123 decodes MP3, not AAC).
 > All SomaFM channels offer an MP3 stream, so every station is playable.
+
+## Install
+
+Plain zsh — clone anywhere, then in `~/.zshrc`:
+
+```zsh
+fpath=(/path/to/omz-soma-plugin $fpath)   # before compinit (tab completion)
+source /path/to/omz-soma-plugin/soma.plugin.zsh
+```
+
+Oh-my-zsh — clone into `$ZSH_CUSTOM/plugins/soma` and add `soma` to `plugins=(...)`.
+Other plugin managers: point them at the repo; there is nothing framework-specific.
 
 ## Usage
 

@@ -41,7 +41,8 @@ _soma_need() {
 _soma_fetch() {
   _soma_need curl jq || return 1
   mkdir -p "$SOMA_CACHE"
-  if curl -fsSL "$SOMA_CHANNELS_URL" -o "$SOMA_JSON.tmp"; then
+  if curl -fsSL -A "soma-zsh-plugin (https://codeberg.org/mvexel/omz-soma-plugin)" \
+      "$SOMA_CHANNELS_URL" -o "$SOMA_JSON.tmp"; then
     mv -f "$SOMA_JSON.tmp" "$SOMA_JSON"
     return 0
   fi
@@ -130,7 +131,7 @@ _soma_stop() {
     _soma_stop_quiet
     print -r -- "■ stopped"
   else
-    print -r -- "soma: nothing playing"
+    print -ru2 -- "soma: nothing playing"
   fi
 }
 
@@ -153,7 +154,7 @@ _soma_current_track() {
 
 _soma_track() {
   if ! _soma_running_pid >/dev/null; then
-    print -r -- "soma: nothing playing"; return 1
+    print -ru2 -- "soma: nothing playing"; return 1
   fi
   local t
   t=$(_soma_current_track) || { print -r -- "♪ buffering…"; return 0; }
@@ -223,6 +224,8 @@ _soma_usage() {
 
 soma() {
   emulate -L zsh
+  # local here + dynamic scoping: visible to every helper, gone when soma returns
+  local SOMA_JSON SOMA_PID SOMA_LOG SOMA_CUR
   _soma_paths
   local cmd=${1:-}
   (( $# )) && shift
