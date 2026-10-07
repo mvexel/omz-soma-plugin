@@ -57,15 +57,15 @@ fisher install /path/to/omz-soma-plugin
 
 ## Usage
 
-| Command | Description |
-|---|---|
+| Command               | Description                                                       |
+| --------------------- | ----------------------------------------------------------------- |
 | `soma play <station>` | Start a station in the background (`<Tab>` completes station ids) |
-| `soma stop` | Stop playback |
-| `soma track` | Show the current track |
-| `soma love` | Save the currently-playing track to your loved list |
-| `soma loved` | Show your loved tracks |
-| `soma list` | List all stations (`id`, title, genre) |
-| `soma update` | Refresh the cached station list |
+| `soma stop`           | Stop playback                                                     |
+| `soma track`          | Show the current track                                            |
+| `soma love`           | Save the currently-playing track to your loved list               |
+| `soma loved`          | Show your loved tracks                                            |
+| `soma list`           | List all stations (`id`, title, genre)                            |
+| `soma update`         | Refresh the cached station list                                   |
 
 Playback is detached, so it keeps going after you close the terminal.
 `soma stop` works from any shell.
@@ -79,14 +79,14 @@ local loved-tracks list.
 
 Set these before the plugin loads to change the (sane) default behavior.
 
-| Variable | Default | Purpose |
-|---|---|---|
-| `SOMA_CACHE` | `$XDG_CACHE_HOME/soma` (`~/.cache/soma`) | Where cache + state files live |
-| `SOMA_CHANNELS_URL` | `https://somafm.com/channels.json` | Station list endpoint |
-| `SOMA_REFRESH_DAYS` | `7` | Auto-refresh the station list after N days |
-| `SOMA_TIMEOUT` | `30` | Seconds before `mpg123` gives up on a stalled stream and exits (`0` = wait forever) |
-| `SOMA_MPG123_OPTS` | _(empty)_ | Extra args passed to `mpg123` (e.g. `-o dummy` for no audio, `-a <device>`) |
-| `SOMA_LOVED` | `$XDG_DATA_HOME/soma/loved` (`~/.local/share/soma/loved`) | File holding your loved-tracks list (TSV) |
+| Variable            | Default                                                   | Purpose                                                                             |
+| ------------------- | --------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `SOMA_CACHE`        | `$XDG_CACHE_HOME/soma` (`~/.cache/soma`)                  | Where cache + state files live                                                      |
+| `SOMA_CHANNELS_URL` | `https://somafm.com/channels.json`                        | Station list endpoint                                                               |
+| `SOMA_REFRESH_DAYS` | `7`                                                       | Auto-refresh the station list after N days                                          |
+| `SOMA_TIMEOUT`      | `30`                                                      | Seconds before `mpg123` gives up on a stalled stream and exits (`0` = wait forever) |
+| `SOMA_MPG123_OPTS`  | _(empty)_                                                 | Extra args passed to `mpg123` (e.g. `-o dummy` for no audio, `-a <device>`)         |
+| `SOMA_LOVED`        | `$XDG_DATA_HOME/soma/loved` (`~/.local/share/soma/loved`) | File holding your loved-tracks list (TSV)                                           |
 
 State files under `$SOMA_CACHE`: `channels.json` (station cache), `soma.pid`
 (running player),
