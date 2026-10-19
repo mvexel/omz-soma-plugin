@@ -1,7 +1,7 @@
 # soma
 
-A SomaFM player plugin for zsh — works with plain zsh, oh-my-zsh, zinit,
-antidote, or any plugin manager.
+A SomaFM player plugin for zsh and fish — works with plain zsh, oh-my-zsh, zinit,
+antidote, fisher, or any plugin manager.
 Play [SomaFM](https://somafm.com/)
 (and stop) streams in the background with `mpg123`.
 Has tab completion for every station and a current track command.
@@ -26,6 +26,8 @@ $ soma stop
 
 ## Install
 
+### Zsh
+
 Plain zsh — clone anywhere, then in `~/.zshrc`:
 
 ```zsh
@@ -37,6 +39,21 @@ Oh-my-zsh — clone into `$ZSH_CUSTOM/plugins/soma`
 and add `soma` to `plugins=(...)`.
 Other plugin managers: point them at the repo;
 there is nothing framework-specific.
+
+### Fish
+
+Plain fish — clone anywhere, then in `~/.config/fish/config.fish`:
+
+```fish
+set -p fish_function_path /path/to/omz-soma-plugin/functions
+set -p fish_complete_path /path/to/omz-soma-plugin/completions
+```
+
+With [Fisher](https://github.com/jorgebucaran/fisher):
+
+```fish
+fisher install /path/to/omz-soma-plugin
+```
 
 ## Usage
 
