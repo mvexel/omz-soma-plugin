@@ -93,11 +93,11 @@ function _soma_is_mpg123
     test -n "$pid"; or return 1
     set -l comm
     if test -r "/proc/$pid/comm"
-        read -l comm < "/proc/$pid/comm"
+        read comm < "/proc/$pid/comm"
     else
         set comm (ps -o comm= -p "$pid" 2>/dev/null); or return 1
     end
-    test (path basename -- (string trim -- "$comm")) = mpg123
+    test "$(path basename -- (string trim -- "$comm"))" = mpg123
 end
 
 # Print the PID if our tracked mpg123 is alive; otherwise clean up state and fail.
