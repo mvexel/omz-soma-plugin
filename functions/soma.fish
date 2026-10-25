@@ -59,7 +59,7 @@ end
 function _soma_fetch
     _soma_need curl jq; or return 1
     mkdir -p "$SOMA_CACHE"
-    if curl -fsSL -A "soma-zsh-plugin (https://codeberg.org/mvexel/omz-soma-plugin)" \
+    if curl -fsSL -A "soma-zsh-plugin (https://github.com/mvexel/omz-soma-plugin)" \
             "$SOMA_CHANNELS_URL" -o "$SOMA_JSON.tmp"
         mv -f "$SOMA_JSON.tmp" "$SOMA_JSON"
         return 0
